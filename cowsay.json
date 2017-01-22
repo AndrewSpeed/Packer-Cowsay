@@ -1,8 +1,8 @@
 {
     "variables": {
-		"docker_hub_email": "",
-		"docker_hub_username": "",
-		"docker_hub_password": ""
+        "docker_hub_email": "",
+        "docker_hub_username": "",
+        "docker_hub_password": ""
     },
     "builders": [
         {
@@ -18,12 +18,12 @@
                 "repository": "itsspeed/cowsay",
                 "tag": "0.1"
             },
-	    	{
-		    	"type": "docker-push",
-		    	"login": true,
-	    		"login_email": "{{user `docker_hub_email`}}",
-    			"login_username": "{{user `docker_hub_username`}}",
-			    "login_password": "{{user `docker_hub_password`}}"
+            {
+                "type": "docker-push",
+                "login": true,
+                "login_email": "{{user `docker_hub_email`}}",
+                "login_username": "{{user `docker_hub_username`}}",
+                "login_password": "{{user `docker_hub_password`}}"
             }
         ]
     ],
