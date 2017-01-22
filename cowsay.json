@@ -1,0 +1,39 @@
+{
+    "variables": {
+		"docker_hub_email": "",
+		"docker_hub_username": "",
+		"docker_hub_password": ""
+    },
+    "builders": [
+        {
+            "type": "docker",
+            "image": "ubuntu",
+            "commit": true
+        }
+    ],
+    "post-processors": [
+        [
+            {
+                "type": "docker-tag",
+                "repository": "itsspeed/cowsay",
+                "tag": "0.1"
+            },
+	    	{
+		    	"type": "docker-push",
+		    	"login": true,
+	    		"login_email": "{{user `docker_hub_email`}}",
+    			"login_username": "{{user `docker_hub_username`}}",
+			    "login_password": "{{user `docker_hub_password`}}"
+            }
+        ]
+    ],
+    "provisioners": [
+        {
+            "type": "shell",
+            "inline": [
+                "apt-get update",
+                "apt-get install -y cowsay"
+            ]
+        }
+    ]
+}
